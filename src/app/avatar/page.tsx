@@ -9,26 +9,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import FormPageOne from "@/components/Avatar/FormPageOne";
-import FormPageTwo from "@/components/Avatar/FormPageTwo";
 import AvatarControlPanel from "@/components/Avatar/AvatarControlPanel";
 
-const formPages = [<FormPageOne />, <FormPageTwo />, <AvatarControlPanel />];
-
 export default function AvatarPage() {
-  const [page, setPage] = useState(1); // 記錄目前的步驟 (1 or 2)
   const [isLive, setIsLive] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   return (
@@ -39,21 +24,6 @@ export default function AvatarPage() {
       <div className="flex flex-wrap justify-center content-center h-[60%] gap-5">
         <Card className="w-[25%] h-[70%]">
           <AvatarControlPanel />
-          {/* {formPages[page - 1]}
-          <CardFooter className="flex justify-between">
-            {page > 1 ? (
-              <Button variant="outline" onClick={() => setPage(page - 1)}>
-                Back
-              </Button>
-            ) : (
-              <div className="flex-1" />
-            )}
-            {page < formPages.length ? (
-              <Button onClick={() => setPage(page + 1)}>Next</Button>
-            ) : (
-              <Button>Submit</Button>
-            )}
-          </CardFooter> */}
         </Card>
         <div className="flex flex-col w-[50%] gap-5 h-[80%]">
           <div className="h-full">
@@ -65,8 +35,6 @@ export default function AvatarPage() {
                 >
                   LIVE
                 </Badge>
-                {/* <CardTitle>Live Video</CardTitle>
-                <Radio /> */}
               </CardHeader>
               <CardContent className="flex items-center justify-center p-6"></CardContent>
             </Card>
@@ -100,26 +68,6 @@ export default function AvatarPage() {
             </Button>
           </div>
         </div>
-
-        {/* {page === 1 && (
-          <Card className="w-[40%]">
-            <FormPageOne />
-            <CardFooter className="flex justify-end">
-              <Button onClick={() => setPage(2)}>Next</Button>
-            </CardFooter>
-          </Card>
-        )}
-        {page === 2 && (
-          <Card className="w-[40%]">
-            <FormPageTwo />
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => setPage(1)}>
-                Back
-              </Button>
-              <Button onClick={() => setPage(2)}>Next</Button>
-            </CardFooter>
-          </Card>
-        )} */}
       </div>
     </div>
   );
