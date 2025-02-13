@@ -21,6 +21,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 
 export default function FormPageOne() {
+  const [isPrivateEnabled, setIsPrivateEnabled] = useState(false);
   return (
     <>
       <CardHeader>
@@ -59,15 +60,28 @@ export default function FormPageOne() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox id="enablePrivateEndpoint" />
+              <Checkbox
+                id="enablePrivateEndpoint"
+                checked={isPrivateEnabled}
+                onCheckedChange={(checked) => setIsPrivateEnabled(!!checked)}
+              />
               <label
                 htmlFor="enablePrivateEndpoint"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 Enable Private Endpoint
               </label>
-              {/* <input type="checkbox" id="enablePrivateEndpoint" onchange = "window.updatePrivateEndpoint()">Enable Private Endpoint</input><br /> */}
             </div>
+            {isPrivateEnabled && (
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="privateEndpoint">Private Endpoint</Label>
+                <Input
+                  id="privateEndpoint"
+                  type="text"
+                  placeholder="https://{your custom name}.cognitiveservices.azure.com/"
+                />
+              </div>
+            )}
           </div>
         </form>
       </CardContent>

@@ -19,7 +19,7 @@ export default function SettingDialog() {
         <DialogTrigger asChild>
           <Button variant="outline">Settings</Button>
         </DialogTrigger>
-        <DialogContent className="h-[62%] flex flex-col flex-grow">
+        <DialogContent className="h-[67%] flex flex-col flex-grow">
           <DialogHeader>
             <DialogTitle>Avatar settings</DialogTitle>
           </DialogHeader>

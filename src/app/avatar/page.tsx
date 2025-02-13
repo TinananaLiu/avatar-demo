@@ -36,7 +36,22 @@ export default function AvatarPage() {
                   LIVE
                 </Badge>
               </CardHeader>
-              <CardContent className="flex items-center justify-center p-6"></CardContent>
+              <CardContent className="flex items-center justify-center p-6">
+                <div id="videoContainer">
+                  <div
+                    id="overlayArea"
+                    // style="position: absolute;"
+                    hidden={true}
+                  >
+                    {/* <!-- Add your text or image controls here --> */}
+                    <p id="overlayText">Live Video</p>
+                    {/* <!-- <img id="overlayImage" src="your-image-source.png" alt="Overlay Image"> --> */}
+                  </div>
+                  <div id="remoteVideo"></div>
+                  <canvas id="canvas" hidden={true}></canvas>
+                  <canvas id="tmpCanvas" hidden={true}></canvas>
+                </div>
+              </CardContent>
             </Card>
           </div>
           <div className="flex gap-5 justify-center">
