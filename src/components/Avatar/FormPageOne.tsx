@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,13 +15,25 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import useAvatarStore from "@/store/useAvatarStore";
 
 export default function FormPageOne() {
-  const [isPrivateEnabled, setIsPrivateEnabled] = useState(false);
+  const { azureSpeech, ttsConfig, setAzureSpeech, setTTSConfig } =
+    useAvatarStore();
+  //const [isPrivateEnabled, setIsPrivateEnabled] = useState(false);
+  const handleSave = () => {
+    if (!azureSpeech.APIKey || !azureSpeech.region) {
+      alert("請填寫 API Key 和 Region！");
+      return;
+    }
+    setAzureSpeech(azureSpeech);
+    console.log(azureSpeech);
+    //setTTSConfig(ttsConfig);
+  };
   return (
     <>
       <CardHeader>
@@ -33,7 +45,10 @@ export default function FormPageOne() {
             <div className="flex flex-row gap-2">
               <div className="flex flex-col space-y-1.5 flex-[4]">
                 <Label htmlFor="region">Region</Label>
-                <Select>
+                <Select
+                  value={azureSpeech.region}
+                  onValueChange={(value) => setAzureSpeech({ region: value })}
+                >
                   <SelectTrigger id="region">
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
@@ -56,14 +71,22 @@ export default function FormPageOne() {
               </div>
               <div className="flex flex-col space-y-1.5 flex-[6]">
                 <Label htmlFor="APIKey">API Key</Label>
-                <Input id="APIKey" type="password" />
+                <Input
+                  id="APIKey"
+                  type="password"
+                  value={azureSpeech.APIKey}
+                  onChange={(e) => setAzureSpeech({ APIKey: e.target.value })}
+                />
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="enablePrivateEndpoint"
-                checked={isPrivateEnabled}
-                onCheckedChange={(checked) => setIsPrivateEnabled(!!checked)}
+                checked={azureSpeech.enablePrivateEndpoint} // type CheckedState = boolean | "indeterminate";
+                onCheckedChange={(checked) =>
+                  setAzureSpeech({ enablePrivateEndpoint: checked === true })
+                }
+                // Convert "checked" to "true | false", ignoring "indeterminate", prevent type mismatch
               />
               <label
                 htmlFor="enablePrivateEndpoint"
@@ -72,13 +95,17 @@ export default function FormPageOne() {
                 Enable Private Endpoint
               </label>
             </div>
-            {isPrivateEnabled && (
+            {azureSpeech.enablePrivateEndpoint && (
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="privateEndpoint">Private Endpoint</Label>
                 <Input
                   id="privateEndpoint"
                   type="text"
                   placeholder="https://{your custom name}.cognitiveservices.azure.com/"
+                  value={azureSpeech.privateEndpoint}
+                  onChange={(e) =>
+                    setAzureSpeech({ privateEndpoint: e.target.value })
+                  }
                 />
               </div>
             )}
@@ -111,7 +138,7 @@ export default function FormPageOne() {
         </form>
       </CardContent>
       <CardFooter className="flex flex-wrap justify-end">
-        <Button>Save</Button>
+        <Button onClick={handleSave}>Save</Button>
       </CardFooter>
     </>
   );

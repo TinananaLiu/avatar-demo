@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import useAvatarStore from "@/store/useAvatarStore";
 import { get } from "http";
 
-function AvatarProvider() {
+function AvatarPanel() {
   const { azureSpeech } = useAvatarStore();
 
   useEffect(() => {
@@ -13,4 +13,4 @@ function AvatarProvider() {
   return <></>;
 }
 
-export default AvatarProvider;
+export default AvatarPanel;

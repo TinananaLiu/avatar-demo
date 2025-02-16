@@ -95,16 +95,16 @@ main {
 @keyframes blink {
   0%,
   100% {
+    background-color: theme("colors.primary.DEFAULT"); /* `secondary` 顏色 */
+    /* color: black; */
+  }
+  50% {
     background-color: theme(
       "colors.destructive.DEFAULT"
     ); /* `destructive` 顏色 */
   }
-  30% {
-    background-color: theme("colors.primary.DEFAULT"); /* `secondary` 顏色 */
-    /* color: black; */
-  }
 }
 
 .animate-blink {
-  animation: blink 1.5s infinite;
+  animation: blink linear 5s infinite;
 }
