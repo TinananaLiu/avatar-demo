@@ -5,7 +5,6 @@ export interface IState {
     region: string;
     APIKey: string;
     enablePrivateEndpoint: boolean;
-    //isPrivateEnabled: boolean,
     privateEndpoint: string;
   };
   ttsConfig: {
@@ -31,7 +30,6 @@ const azureSpeech = {
   region: "",
   APIKey: "",
   enablePrivateEndpoint: false,
-  //isPrivateEnabled: false,
   privateEndpoint: "",
 };
 
@@ -64,9 +62,14 @@ const useAvatarStore = create<IState>((set) => ({
       ttsConfig: { ...state.ttsConfig, ...value },
     })),
   setAvatarConfig: (value) =>
-    set((state) => ({
-      avatarConfig: { ...state.avatarConfig, ...value },
-    })),
+    set((state) => {
+      return {
+        avatarConfig: {
+          ...state.avatarConfig,
+          ...value,
+        },
+      };
+    }),
 }));
 
 export default useAvatarStore;

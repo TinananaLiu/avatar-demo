@@ -22,11 +22,10 @@ export default function AvatarPage() {
         <h1 className="text-4xl font-bold leading-tight mb-1">Avatar</h1>
       </div>
       <div className="flex flex-wrap justify-center content-center h-[60%] gap-5">
-        <Card className="w-[25%] h-[70%]">
-          <AvatarControlPanel />
-        </Card>
-        <div className="flex flex-col w-[50%] gap-5 h-[80%]">
-          <div className="h-full">
+        <AvatarControlPanel />
+
+        <div className="flex flex-col w-[40%] gap-5 h-[80%]">
+          <div className="h-full  min-h-[300px]">
             <Card className="h-full">
               <CardHeader className="flex flex-row justify-between">
                 <Badge

@@ -12,30 +12,27 @@ import SettingDialog from "./SettingDialog";
 
 export default function AvatarControlPanel() {
   return (
-    <>
-      <CardHeader>
+    <Card className="w-[20%] h-[70%] overflow-hidden min-h-[300px] flex flex-col gap-3">
+      <CardHeader className="pb-0">
         <CardTitle>Avatar Control Panel</CardTitle>
         <CardDescription>
           Converts your input text into speech in one-click.
         </CardDescription>
       </CardHeader>
-      <CardContent className="pb-0">
-        <form>
-          <div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="spokenText">Spoken Text</Label>
-              <Textarea
-                // placeholder="Type your message here."
-                id="spokenText"
-                className="h-56 resize-none"
-              />
-            </div>
-            <div className="flex justify-center mt-2">
-              <SettingDialog />
-            </div>
+      <CardContent className="flex flex-col h-[80%]">
+        <form className="flex flex-col gap-4 h-full">
+          <div className="flex flex-col space-y-1.5 h-[80%]">
+            <Label htmlFor="spokenText">Spoken Text</Label>
+            <Textarea
+              id="spokenText"
+              className="flex-grow min-h-[100px] resize-none overflow-auto"
+            />
+          </div>
+          <div className="flex justify-center">
+            <SettingDialog />
           </div>
         </form>
       </CardContent>
-    </>
+    </Card>
   );
 }

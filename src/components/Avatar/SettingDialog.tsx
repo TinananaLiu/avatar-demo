@@ -9,8 +9,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import FormPageOne from "./FormPageOne";
-import FormPageTwo from "./FormPageTwo";
+import SpeechTTSForm from "./SpeechTTSForm";
+import AvatarConfigForm from "./AvatarConfigForm";
 
 export default function SettingDialog() {
   return (
@@ -19,20 +19,20 @@ export default function SettingDialog() {
         <DialogTrigger asChild>
           <Button variant="outline">Settings</Button>
         </DialogTrigger>
-        <DialogContent className="h-[67%] flex flex-col flex-grow">
+        <DialogContent className="h-[75%] flex flex-col flex-grow overflow-hidden max-h-[700px] min-h-[672px]">
           <DialogHeader>
-            <DialogTitle>Avatar settings</DialogTitle>
+            <DialogTitle>Avatar Settings</DialogTitle>
           </DialogHeader>
           <Tabs defaultValue="avatar">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="formone">First</TabsTrigger>
-              <TabsTrigger value="formtwo">Second</TabsTrigger>
+              <TabsTrigger value="speechTTS">Speech & TTS</TabsTrigger>
+              <TabsTrigger value="avatarConfig">Avatar Config</TabsTrigger>
             </TabsList>
-            <TabsContent value="formone">
-              <FormPageOne />
+            <TabsContent value="speechTTS">
+              <SpeechTTSForm />
             </TabsContent>
-            <TabsContent value="formtwo">
-              <FormPageTwo />
+            <TabsContent value="avatarConfig">
+              <AvatarConfigForm />
             </TabsContent>
           </Tabs>
         </DialogContent>
